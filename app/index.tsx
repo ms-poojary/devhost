@@ -1,18 +1,31 @@
-import { View, Text, StyleSheet } from 'react-native'
-import React from 'react'
+import { Stack } from 'expo-router';
 
-const index = () => {
-  return (
-    <View style={styles.container}>
-      <Text>index</Text>
-    </View>
-  )
-}
+import {createNativeStackNavigator} from '@react-navigation/native-stack'
+import React from 'react';
+import Login from '@/components/Login';
+import SignUp from '@/components/SignUp'; // Ensure this is imported correctly
 
-const styles=StyleSheet.create({
-    container:{
-        alignContent:'center'
-    }
-})
+export type RootStackParamList = {
+  SignUp:undefined,
+  Login:undefined
+ };
+const Index = () => {
 
-export default index
+
+ 
+ const Stack=createNativeStackNavigator<RootStackParamList>();
+
+ return (
+  <Stack.Navigator
+    initialRouteName="SignUp"
+    screenOptions={{
+      headerShown: false,
+    }}
+  >
+    <Stack.Screen name="Login" component={Login} />
+    <Stack.Screen name="SignUp" component={SignUp} />
+  </Stack.Navigator>
+);
+};
+
+export default Index;
