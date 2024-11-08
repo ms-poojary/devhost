@@ -21,7 +21,7 @@ const SignUp = () => {
         } else {
             // Place signup logic here (e.g., API call)
             Alert.alert('Success', 'Account created successfully!');
-            navigation.navigate('(tabs)'); // Redirect to Login after signup
+            navigation.navigate('Login'); // Redirect to Login after signup
         }
     };
 
