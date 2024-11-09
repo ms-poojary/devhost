@@ -12,4 +12,4 @@ con.connect(function(error){
     console.log("successfully connected");
 });
 
-module.exports=con;
+module.exports = con;
