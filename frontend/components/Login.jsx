@@ -7,11 +7,32 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleLogin = () => {
-        if (email === 'test@example.com' && password === 'password') {
-            navigation.navigate('(tabs)'); // Adjust the target route as needed
-        } else {
-            Alert.alert('Login Failed', 'Invalid email or password.');
+    const handleLogin = async () => {
+        try {
+            const response = await fetch('http://192.168.103.221:8088/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email: email,
+                    password: password,
+                }),
+            });
+            
+            const text = await response.text();
+            console.log('Response data:', text);  // Log full response as text
+            
+            const data = JSON.parse(text);  // Attempt to parse JSON afterward
+            
+            if (data.success) {
+                navigation.navigate('(tabs)');
+            } else {
+                Alert.alert('Login Failed', data.message);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            Alert.alert('Login Failed', 'An error occurred. Please try again.');
         }
     };
 
@@ -36,22 +57,16 @@ const Login = () => {
             <Pressable style={styles.btn} onPress={handleLogin}>
                 <Text style={styles.btnText}>Login</Text>
             </Pressable>
-            <Text style={styles.signUpText}>
-                Don’t have an account?{' '}
-                <Text style={styles.signUpLink} onPress={() => navigation.navigate('SignUp')}>
-                    Sign up here
-                </Text>
-            </Text>
         </View>
     );
 };
 
 const styles = StyleSheet.create({
     container: {
-        // flex: 1,
-        // justifyContent: 'center',
-        // alignItems: 'center',
-        // padding: 20,
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 20,
     },
     title: {
         fontSize: 24,

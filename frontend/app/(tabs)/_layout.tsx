@@ -2,6 +2,7 @@
 import { Tabs } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { Colors } from '@/constants/Colors';
+import AntDesign from '@expo/vector-icons/AntDesign';
 
 export default function TabLayout() {
   return (
@@ -9,10 +10,10 @@ export default function TabLayout() {
       screenOptions={{
         headerShown: false,
         tabBarLabelStyle: { display: 'none' },
-        tabBarInactiveBackgroundColor: Colors.primary.color8,
-        tabBarActiveBackgroundColor: Colors.primary.color8,
+        tabBarInactiveBackgroundColor: "#007BFF",
+        tabBarActiveBackgroundColor: "#007BFF",
         tabBarInactiveTintColor: Colors.secondary.lightgrey,
-        tabBarActiveTintColor: Colors.primary.color6,
+        tabBarActiveTintColor: Colors.secondary.gold1,
       }}
     >
     
@@ -28,21 +29,25 @@ export default function TabLayout() {
         name="Add"
         options={{
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="search" size={size} color={color} />
-          ),
+<AntDesign name="plussquareo" size={24} color={color} />          ),
         }}
       />
         <Tabs.Screen
         name="Profile"
         options={{
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="search" size={size} color={color} />
-          ),
+<AntDesign name="user" size={24} color={color} />          ),
+        }}
+      />
+        <Tabs.Screen
+        name="Explore"
+        options={{
+          tabBarIcon: ({ color, size }) => (
+<Ionicons name="search" size={24} color={color} />          ),
         }}
       />
       
     </Tabs>
+    
   );
 }
-
-
